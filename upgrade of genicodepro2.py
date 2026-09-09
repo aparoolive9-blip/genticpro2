@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Optional
 import sys
 
-# Configure enterprise-grade logging infrastructure
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s - %(message)s",
@@ -63,10 +63,10 @@ class EnterpriseHereditaryGenomicAgent:
 
         logger.info(f"Initiating sequence ingestion and sanitization for {self.sample_id}...")
         
-        # Sanitize data: uppercase conversion and removal of whitespace/newlines
+        
         cleaned_sequence = "".join(sequence_data.upper().split())
         
-        # Validate data integrity against standard nucleotide dictionary
+       
         unrecognized_chars = set(cleaned_sequence) - self.VALID_NUCLEOTIDES
         if unrecognized_chars:
             logger.warning(
@@ -121,7 +121,7 @@ class EnterpriseHereditaryGenomicAgent:
 
         logger.info("Initiating hereditary variant and inheritance pattern screening...")
 
-        # Enterprise heuristic mapping rules (interfaces with ClinVar/dbSNP in production)
+        
         if "BRCA1" in self.raw_sequence or "BRCA2" in self.raw_sequence:
             self.hereditary_findings.append(
                 HereditaryVariantRecord(
@@ -219,20 +219,20 @@ class EnterpriseHereditaryGenomicAgent:
 
 
 if __name__ == "__main__":
-    # Representative genetic extract data stream from a clinical blood sample
+   
     mock_blood_sequence = """
     AGCTCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGAHBBBRCA1TCGATCGATCG 
     ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGA
     """
 
     try:
-        # Instantiate the agent and process the pipeline
+        
         genomic_agent = EnterpriseHereditaryGenomicAgent(sample_id="ENT-GENOME-2026-904B")
         genomic_agent.ingest_genomic_data(mock_blood_sequence)
         genomic_agent.compute_structural_metrics()
         genomic_agent.execute_hereditary_screening()
         
-        # Render and output the executive report
+       
         executive_summary = genomic_agent.generate_clinical_report()
         print(executive_summary)
         
